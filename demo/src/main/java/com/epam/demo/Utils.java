@@ -1,17 +1,17 @@
 package com.epam.demo;
 
-import com.epam.utils.StringUtils;
-
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utils {
     public static boolean isAllPositiveNumbers(List<String> args) {
-       //magic happens here
-        for (String str : args) {
-            if (!StringUtils.isPositiveNumber(str)) {
-                return false;
+        int isAll = 0;
+        List<Integer> integerArgs = args.stream().map(Integer::parseInt).collect(Collectors.toList());
+        for(int i: integerArgs) {
+            if (i % 2 != 0) {
+                isAll += 1;
             }
         }
-        return true;
+        return isAll == 0;
     }
 }
