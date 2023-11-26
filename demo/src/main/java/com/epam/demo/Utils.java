@@ -9,9 +9,9 @@ public class Utils {
        //magic happens here
         for (String str : args) {
             if (!StringUtils.isPositiveNumber(str)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }
