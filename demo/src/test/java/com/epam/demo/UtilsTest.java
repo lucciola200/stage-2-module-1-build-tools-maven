@@ -1,40 +1,45 @@
 package com.epam.demo;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class UtilsTest {
 
     @Test
-    public void testAllPositiveNumbersWithPositiveNumbers() {
-        List<String> numbers = Arrays.asList("1", "2", "3");
-        assertTrue(Utils.isAllPositiveNumbers(numbers));
+    public void testIsAllPositiveNumbersWithAllPositive() {
+        assertTrue(Utils.isAllPositiveNumbers(Arrays.asList("1", "2", "3")),
+                "All positive numbers should return true");
     }
 
     @Test
-    public void testAllPositiveNumbersWithNegativeNumber() {
-        List<String> numbers = Arrays.asList("1", "-2", "3");
-        assertFalse(Utils.isAllPositiveNumbers(numbers));
+    public void testIsAllPositiveNumbersWithNegativeNumber() {
+        assertFalse(Utils.isAllPositiveNumbers(Arrays.asList("1", "-2", "3")),
+                "Including a negative number should return false");
     }
 
     @Test
-    public void testAllPositiveNumbersWithNonNumber() {
-        List<String> numbers = Arrays.asList("1", "abc", "3");
-        assertFalse(Utils.isAllPositiveNumbers(numbers));
+    public void testIsAllPositiveNumbersWithZero() {
+        assertFalse(Utils.isAllPositiveNumbers(Arrays.asList("0")),
+                "Zero is not a positive number, should return false");
     }
 
     @Test
-    public void testAllPositiveNumbersWithEmptyList() {
-        List<String> numbers = Collections.emptyList();
-        assertTrue(Utils.isAllPositiveNumbers(numbers));
+    public void testIsAllPositiveNumbersWithEmptyList() {
+        assertTrue(Utils.isAllPositiveNumbers(Collections.emptyList()),
+                "An empty list should return true as there are no non-positive numbers");
     }
 
     @Test
-    public void testAllPositiveNumbersWithNullList() {
-        assertFalse(Utils.isAllPositiveNumbers(null));
+    public void testIsAllPositiveNumbersWithNull() {
+        assertFalse(Utils.isAllPositiveNumbers(null),
+                "Null input should return false");
+    }
+
+    @Test
+    public void testIsAllPositiveNumbersWithNonNumericString() {
+        assertFalse(Utils.isAllPositiveNumbers(Arrays.asList("1", "abc", "3")),
+                "Non-numeric string should return false");
     }
 }
